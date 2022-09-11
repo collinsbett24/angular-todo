@@ -1,0 +1,33 @@
+<div class="add-todo-form">
+    <form>
+        <div class="example-container">
+            <form #f="ngForm" (ngSubmit)="addTodo(f.value)">
+                <H1>New Todo Name</H1>
+                <mat-divider></mat-divider>
+                <mat-form-field class="example-full-width" appearance="outline">
+                    <mat-label>Name</mat-label>
+                    <input type="text" matInput ngModel name="name" [formControl]="todoNameFormControl"
+                        placeholder="Ex. Angular PWA">
+                    <mat-error
+                        *ngIf="todoNameFormControl.hasError('name') && !todoNameFormControl.hasError('required')">
+                        Please enter a valid Todo Name
+                    </mat-error>
+                    <mat-error *ngIf="todoNameFormControl.hasError('required')">
+                        Todo Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <br />
+                <mat-checkbox [formControl]="doneControl" ngModel name="done">Done</mat-checkbox>
+                <br />
+                <button [disabled]="todoNameFormControl.invalid" type="submit" class="add-button" mat-raised-button
+                    color="primary">Add</button>
+            </form>
+
+            <form class="example-form">
+
+            </form>
+        </div>
+
+
+    </form>
+</div>

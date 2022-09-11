@@ -1,0 +1,46 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .example-full-width {
+        width: 70%;
+    }
+
+    .add-button {
+        width: 20%;
+        background-color: cadetblue;
+    }
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .5rem;
+    font-size: large;
+
+    .name {
+        max-width: 50%;
+        min-width: 50%;
+        height: fit-content;
+        display: block;
+        // overflow: ;
+    }
+
+}
+
+.head {
+    background-color: cadetblue;
+}
+
+.no-todo {
+    color: rgb(235, 67, 45);
+    display: flex;
+    font-weight: bolder;
+    // align-items: center;
+    justify-content: space-around;
+}
+
+.mat-actions {
+    margin: 1rem;
+}

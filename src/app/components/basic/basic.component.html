@@ -1,0 +1,57 @@
+<div class="add-todo-form">
+    <mat-card>
+        <form class="form" [formGroup]="addTodoForm" (ngSubmit)="addTodo()">
+
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput formControlName="todoNameFormControl" placeholder="Ex. Angular PWA">
+                <mat-error
+                    *ngIf="f.todoNameFormControl.hasError('name') && !f.todoNameFormControl.hasError('required')">
+                    Please enter a valid Todo Name
+                </mat-error>
+                <mat-error *ngIf="f.todoNameFormControl.hasError('required')">
+                    Todo Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+            <br />
+            <button [disabled]="!addTodoForm.valid" type="submit" class="add-button" mat-raised-button>Add</button>
+        </form>
+        <mat-divider></mat-divider>
+
+        <mat-card class="list head">
+
+            <th class="name">Name</th>
+            <th class="done">Done</th>
+            <th class="actions">Actions</th>
+
+        </mat-card>
+        <div *ngIf="todoData.length > 0">
+            <div *ngFor="let data of todoData; let i =index">
+                <mat-card [ngStyle]="data.done  && { 'font-style': 'italic', 'text-decoration':'line-through' }"
+                    class="list">
+                    <span class="name">{{data.name}}</span>
+                    <span class="done">
+                        <mat-checkbox (click)="doneControl(i, data.done)">{{data.done}} </mat-checkbox>
+                    </span>
+                    <div class="actions">
+                        <button mat-button (click)="deleteFunc(i)">
+                            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="delete" color="warn">
+                            </mat-icon>
+                        </button>
+                    </div>
+                </mat-card>
+            </div>
+            <mat-card-actions class="mat-actions" align="end">
+                <!-- <button mat-button>Like</button> -->
+                <button (click)="deleteAll()" mat-button color="warn">Delete All</button>
+            </mat-card-actions>
+        </div>
+        <div *ngIf="todoData.length == 0">
+            <mat-card class="no-todo">
+                No ToDo
+            </mat-card>
+        </div>
+
+
+    </mat-card>
+</div>
